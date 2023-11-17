@@ -10,11 +10,11 @@ impl SemaphoreIdentity {
         poseidon::hash_2([self.nullifier, self.trapdoor])
     }
 
-    fn identifier(self) -> Field {
+    fn commitment(self) -> Field {
         poseidon::hash_1([self.secret()])
     }
+}
 
-    fn nullifier_hash(self, external_nullifier: Field) -> Field {
-        poseidon::hash_2([external_nullifier, self.nullifier])
-    }
+fn calculate_nullifier_hash(identity_nullifier: Field, external_nullifier: Field) -> Field {
+    poseidon::hash_2([external_nullifier, identity_nullifier])
 }

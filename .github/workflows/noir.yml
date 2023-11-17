@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 jobs:
-  check:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -16,5 +16,11 @@ jobs:
         with:
           toolchain: 0.19.2
 
-      - name: Run nargo check
-        run: nargo check
+      - name: Generate test cases
+        run: |
+          yarn install --immutable
+          # Generates 10 random semaphore identities as test cases. 
+          node ./scripts/generate_test_case.js 10
+
+      - name: Run nargo test
+        run: nargo test
