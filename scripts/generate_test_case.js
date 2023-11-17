@@ -37,7 +37,7 @@ fn test_semaphore_${test_case_id}() {
   assert_eq(identity.secret(), ${identity.secret}, "incorrect secret");
   assert_eq(identity.commitment(), ${identity.commitment}, "incorrect identifier");
 
-  assert_eq(calculate_nullifier_hash(identity.nullifier, ${hash(externalNullifier)}), ${expectedNullifierHash});
+  assert_eq(calculate_nullifier_hash(${hash(externalNullifier)}, identity.nullifier), ${expectedNullifierHash});
 }
 `
 

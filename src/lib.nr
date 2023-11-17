@@ -15,6 +15,6 @@ impl SemaphoreIdentity {
     }
 }
 
-fn calculate_nullifier_hash(identity_nullifier: Field, external_nullifier: Field) -> Field {
+fn calculate_nullifier_hash(external_nullifier: Field, identity_nullifier: Field) -> Field {
     poseidon::hash_2([external_nullifier, identity_nullifier])
 }
